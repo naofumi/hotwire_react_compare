@@ -11,22 +11,22 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <div class="mb-2">
+    <%= form.label :title, class: "block text-sm" %>
+    <%= form.text_field :title, class: "p-1 border rounded" %>
+  </div>
+
+  <div class="mb-2">
+    <%= form.label :body, class: "block text-sm" %>
+    <%= form.textarea :body, class: "p-1 border rounded" %>
+  </div>
+
+  <div class="mb-2">
+    <%= form.label :author_id, class: "block text-sm"%>
+    <%= form.select :author_id, Author.all.map { [_1.name, _1.id] }, {}, { class: "p-1 border rounded appearance-none pr-8" } %>
   </div>
 
   <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.textarea :body %>
-  </div>
-
-  <div>
-    <%= form.label :author_id, style: "display: block" %>
-    <%= form.text_field :author_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit class: "p-2 rounded bg-orange-600 text-white cursor-pointer" %>
   </div>
 <% end %>

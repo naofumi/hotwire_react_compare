@@ -1,0 +1,160 @@
+openapi: 3.0.3
+info:
+  title: Posts API
+  description: This is the API for managing posts.
+  version: "1.0.0"
+
+servers:
+  - url: http://localhost:3000
+    description: Local development server
+
+paths:
+  /posts:
+    get:
+      summary: Get all posts
+      description: Retrieve a list of all posts.
+      responses:
+        '200':
+          description: A list of posts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                      description: The ID of the post
+                    title:
+                      type: string
+                      example: "Post title"
+                      description: The title of the post
+                    content:
+                      type: string
+                      example: "Post content goes here"
+                      description: The main content of the post
+                    author:
+                      type: object
+                      description: The author of the post
+                      properties:
+                        id:
+                          type: integer
+                          example: 99
+                          description: The ID of the author
+                        name:
+                          type: string
+                          example: "Jane Doe"
+                          description: The name of the author
+                        email:
+                          type: string
+                          example: "jane.doe@example.com"
+                          description: The email of the author
+    post:
+      summary: Create a new post
+      description: Add a new post to the database.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: "New Post Title"
+                  description: The title of the new post
+                content:
+                  type: string
+                  example: "Content for the new post"
+                  description: The content of the post
+                authorId:
+                  type: integer
+                  example: 99
+                  description: The ID of the author creating the post
+      responses:
+        '201':
+          description: Post created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                    description: The ID of the newly created post
+                  title:
+                    type: string
+                    example: "New Post Title"
+                  content:
+                    type: string
+                    example: "Content for the new post"
+                  author:
+                    type: object
+                    description: The author of the post
+                    properties:
+                      id:
+                        type: integer
+                        example: 99
+                      name:
+                        type: string
+                        example: "Jane Doe"
+                      email:
+                        type: string
+                        example: "jane.doe@example.com"
+
+  /posts/{id}:
+    get:
+      summary: Get a single post
+      description: Retrieve information about a specific post by its ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the post
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: A single post details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                    description: The ID of the post
+                  title:
+                    type: string
+                    example: "Post title"
+                  content:
+                    type: string
+                    example: "Post content goes here"
+                  author:
+                    type: object
+                    description: The author of the post
+                    properties:
+                      id:
+                        type: integer
+                        example: 99
+                      name:
+                        type: string
+                        example: "Jane Doe"
+                      email:
+                        type: string
+                        example: "jane.doe@example.com"
+        '404':
+          description: Post not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Post not found"

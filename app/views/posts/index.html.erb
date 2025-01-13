@@ -2,15 +2,41 @@
 
 <% content_for :title, "Posts" %>
 
-<h1>Posts</h1>
+<h1 class="text-5xl mb-16">Posts</h1>
 
-<div id="posts">
+<%= link_to "New post", new_post_path, class: "p-2 rounded bg-orange-600 text-white" %>
+<script>
+  // Typically, this would be written using Stimulus.
+
+  function openModal() {
+    document.getElementById("modal").showModal();
+  }
+
+  function closeModal() {
+    document.getElementById("modal").close();
+  }
+</script>
+
+<div id="posts" class="mt-8">
   <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
+    <div class="mb-4">
+      <%= render post %>
+      <p>
+        <%= link_to "Show this post", post, class: "p-1 rounded border border-orange-600 text-orange-600" %>
+      </p>
+      <p class="mt-4">
+        <%= link_to "Show in modal", post,
+                    class: "p-1 rounded border border-orange-600 text-orange-600",
+                    data: { turbo_frame: "modal-frame" },
+                    onclick: "openModal()" %>
+      </p>
+    </div>
   <% end %>
 </div>
 
-<%= link_to "New post", new_post_path %>
+<dialog id="modal" class="relative min-w-96 min-h-96 p-4 rounded-xl">
+  <button onclick="closeModal()" class="absolute right-4 top-4 bg-white rounded-full text-3xl bold">x</button>
+  <div class="mt-8">
+  <turbo-frame id="modal-frame"></turbo-frame>
+  </div>
+</dialog>
