@@ -1,24 +1,34 @@
-# README
+#  Compare Hotwire and React code
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
 
-Things you may want to cover:
+Assumption: We assume that you have a Ruby and Node environment. 
 
-* Ruby version
+### Install Ruby gems
 
-* System dependencies
+```shell
+bundle install
+```
 
-* Configuration
+### Install npm packages
 
-* Database creation
+```shell
+yarn install
+```
 
-* Database initialization
+### Start Ruby on Rails
 
-* How to run the test suite
+```shell
+bin/dev
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Then access http://localhost:3000.
+If you may be asked to run pending migrations, press the button and do this. 
 
-* Deployment instructions
+### Seed data
 
-* ...
+To seed the database, run the following command.
+
+```shell
+bin/rails db:fixtures:load
+```
