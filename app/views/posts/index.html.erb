@@ -22,11 +22,11 @@
     <div class="mb-4">
       <%= render post %>
       <p>
-        <%= link_to "Show this post", post, class: "p-1 rounded border border-orange-600 text-orange-600" %>
+        <%= link_to "Show this post", post, class: "inline-block p-1 rounded border border-orange-600 text-orange-600" %>
       </p>
       <p class="mt-4">
         <%= link_to "Show in modal", post,
-                    class: "p-1 rounded border border-orange-600 text-orange-600",
+                    class: "inline-block p-1 rounded border border-orange-600 text-orange-600",
                     data: { turbo_frame: "modal-frame" },
                     onclick: "openModal()" %>
       </p>
